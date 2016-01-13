@@ -1,5 +1,5 @@
-(function () {'use strict';    
-   angular.module('ngA11y')    
+(function () {'use strict';
+   angular.module('ngA11y')
 
     /**
      * Directive to make aria-live announcements of validation errors
@@ -156,14 +156,14 @@
 
     // apply the controlFocusDirective to various
     // native elements
-    module.directive('input', controlFocusDirective);
-    module.directive('textarea', controlFocusDirective);
-    module.directive('select', controlFocusDirective);
+  angular.module('ngA11y').directive('input', controlFocusDirective);
+  angular.module('ngA11y').directive('textarea', controlFocusDirective);
+  angular.module('ngA11y').directive('select', controlFocusDirective);
 
     /**
      * Directive for accessible forms
      */
-    module.directive('nga11yForm', ['$log', function ($log) {
+    angular.module('ngA11y').directive('nga11yForm', ['$log', function ($log) {
         return {
             restrict: 'A',
             link: function (scope, elem, attr, ctrl) {

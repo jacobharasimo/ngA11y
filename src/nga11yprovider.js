@@ -8,7 +8,7 @@
    * Provider allows the user to set some constant values for ngAlly to funciton on.
    *
    */
-  angular.module('ngA11y')
+  angular.module('ngA11y',[])
 
     .provider('$ngA11y', function () {
 

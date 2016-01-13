@@ -1,7 +1,7 @@
 
 (function () {
     'use strict';
-    angular.module('ngA11y')
+    angular.module('ngA11y',[])
 
     .directive('nga11yFocus', ['$timeout', function ($timeout) {
         function hidden(elem) {

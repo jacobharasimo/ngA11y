@@ -8,7 +8,7 @@
 
 (function () {
     'use strict';
-    angular.module('ngA11y')
+    angular.module('ngA11y',[])
 
     /**
      *

@@ -11,7 +11,7 @@
      * to any suitable control that when clicked will close the modal.
      *
      */
-    angular.module('ngA11y')
+    angular.module('ngA11y',[])
         /**
          * @ngdoc directive
          * @module ngA11y
