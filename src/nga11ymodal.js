@@ -2,8 +2,7 @@
  * (c) 2016
  *  License: MIT
  */
-(function (window, angular, undefined) {
-    'use strict';
+(function () {'use strict';
     /**
      * @ngdoc module
      * @name ngA11y
