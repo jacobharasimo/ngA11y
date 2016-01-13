@@ -1,59 +1,5 @@
-/*!
- * Angular Directives For Accessible Forms
- *
- * Copyright (C) 2014 Deque Systems Inc., All Rights Reserved
- *
- * See the project LICENSE file for usage
- */
-(function () {
-    'use strict';
-/**
-     * Reset (remove-all) aria-desribedby ids added by these directives
-     * and optionally add a new ID
-     *
-     * @param {Object}      ctrl    The angular control object
-     * @param {HTMLElement} elem    The HTML element
-     * @param {String}        [newId] (optional) A new ID to add
-     */
-    function resetDescribedby(ctrl, elem, newId) {
-        // older browsers return null if attribute doesn't exist
-        var describedby = elem.getAttribute('aria-describedby') || '';
-        var original = describedby;
-
-        // remove all pre-existing desribedby ids - we don't just
-        // set it to a null string in case other code is
-        // using aria-describedby, so we remove them using the stored
-        // array of ids on the ctrl object
-        var previous = ctrl.describedby || [];
-        for (var i = 0, len = previous.length; i < len; i++) {
-            // replace all incidences of the id
-            var replacer = new RegExp('(?:^|\\s)' + previous[i] + '(?!\\S)', 'g');
-            describedby = describedby.replace(replacer, '');
-        }
-        ctrl.describedby = [];
-
-        // add the optional new one
-        if (newId) {
-            // we only add the id if its not already there
-            var match = new RegExp('(?:^|\\s)' + newId + '(?!\\S)');
-            if (!match.test(describedby)) {
-                // add the id to the list associated with the control
-                ctrl.describedby.push(newId);
-                // add the id to the aria-describedby attribute
-                describedby += ' ' + newId;
-            }
-        }
-
-        // only change the attribute if changes have been
-        // made to the string
-        if (describedby !== original) {
-            elem.setAttribute('aria-describedby', describedby);
-        }
-    }
-    
-   angular.module('ngA11y')
-
-    
+(function () {'use strict';    
+   angular.module('ngA11y')    
 
     /**
      * Directive to make aria-live announcements of validation errors
@@ -62,6 +8,52 @@
         return {
             require: 'ngModel',
             link: function (scope, element, attrs, ctrl) {
+                /**
+                 * Reset (remove-all) aria-desribedby ids added by these directives
+                 * and optionally add a new ID
+                 *
+                 * @param {Object}      ctrl    The angular control object
+                 * @param {HTMLElement} elem    The HTML element
+                 * @param {String}        [newId] (optional) A new ID to add
+                 */
+                function resetDescribedby(ctrl, elem, newId) {
+                    // older browsers return null if attribute doesn't exist
+                    var describedby = elem.getAttribute('aria-describedby') || '';
+                    var original = describedby;
+
+                    // remove all pre-existing desribedby ids - we don't just
+                    // set it to a null string in case other code is
+                    // using aria-describedby, so we remove them using the stored
+                    // array of ids on the ctrl object
+                    var previous = ctrl.describedby || [];
+                    for (var i = 0, len = previous.length; i < len; i++) {
+                        // replace all incidences of the id
+                        var replacer = new RegExp('(?:^|\\s)' + previous[i] + '(?!\\S)', 'g');
+                        describedby = describedby.replace(replacer, '');
+                    }
+                    ctrl.describedby = [];
+
+                    // add the optional new one
+                    if (newId) {
+                        // we only add the id if its not already there
+                        var match = new RegExp('(?:^|\\s)' + newId + '(?!\\S)');
+                        if (!match.test(describedby)) {
+                            // add the id to the list associated with the control
+                            ctrl.describedby.push(newId);
+                            // add the id to the aria-describedby attribute
+                            describedby += ' ' + newId;
+                        }
+                    }
+
+                    // only change the attribute if changes have been
+                    // made to the string
+                    if (describedby !== original) {
+                        elem.setAttribute('aria-describedby', describedby);
+                    }
+                }
+
+
+
                 // get value of the (optional) nga11y-announce-delay attribute
                 var debounceAttr = attrs.nga11yValidationDelay;
 

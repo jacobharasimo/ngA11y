@@ -1,7 +1,3 @@
-/*
- * (c) 2016
- *  License: MIT
- */
 (function () {'use strict';
     /**
      * @ngdoc module
