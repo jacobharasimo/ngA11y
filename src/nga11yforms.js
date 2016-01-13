@@ -7,15 +7,7 @@
  */
 (function () {
     'use strict';
-
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
-
-    /**
+/**
      * Reset (remove-all) aria-desribedby ids added by these directives
      * and optionally add a new ID
      *
@@ -58,11 +50,15 @@
             elem.setAttribute('aria-describedby', describedby);
         }
     }
+    
+   angular.module('ngA11y')
+
+    
 
     /**
      * Directive to make aria-live announcements of validation errors
      */
-    module.directive('nga11yValidation', ['$timeout', 'nga11yAnnounce', function ($timeout, nga11yAnnounce) {
+    .directive('nga11yValidation', ['$timeout', 'nga11yAnnounce', function ($timeout, nga11yAnnounce) {
         return {
             require: 'ngModel',
             link: function (scope, element, attrs, ctrl) {

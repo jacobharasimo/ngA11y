@@ -8,14 +8,9 @@
 
 (function () {
     'use strict';
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
+    angular.module('ngA11y')
 
-    module.directive('nga11yFocus', ['$timeout', function ($timeout) {
+    .directive('nga11yFocus', ['$timeout', function ($timeout) {
         function hidden(elem) {
             return !elem.offsetWidth || !elem.offsetHeight;
         }

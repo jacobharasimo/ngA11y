@@ -8,12 +8,7 @@
 
 (function () {
     'use strict';
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
+    angular.module('ngA11y')
 
     /**
      *
@@ -25,7 +20,7 @@
      *
      */
 
-    module.factory('nga11yAnnounce', [function () {
+    .factory('nga11yAnnounce', [function () {
         function makePolite(n) {
             var politeAnnouncer = angular.element('<div>').attr({
                 'id': 'nga11y-politeannounce' + n,
