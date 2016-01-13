@@ -3,7 +3,7 @@ ngA11y
 
 Angular accessibility module
 
-While working through several accessability problems i came across a great accessability repo [https://github.com/dequelabs/ngA11y] the problem was it had not been updated, at that time, in over a year.
+While working through several accessability problems i came across a great accessability repo https://github.com/dequelabs/ngA11y the problem was it had not been updated, at that time, in over a year.
 
 I tried it out and initally it worked for what I wanted, however as my project grew i found it lacking in a few features. As such the only solution at the time was to fork the repo so that the needed updates can be done as the previous was unmaintained. 
 
