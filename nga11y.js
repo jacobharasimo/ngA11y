@@ -8,12 +8,7 @@
 
 (function () {
     'use strict';
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
+    angular.module('ngA11y')
 
     /**
      *
@@ -25,7 +20,7 @@
      *
      */
 
-    module.factory('nga11yAnnounce', [function () {
+    .factory('nga11yAnnounce', [function () {
         function makePolite(n) {
             var politeAnnouncer = angular.element('<div>').attr({
                 'id': 'nga11y-politeannounce' + n,
@@ -88,14 +83,9 @@
 
 (function () {
     'use strict';
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
+    angular.module('ngA11y')
 
-    module.directive('nga11yFocus', ['$timeout', function ($timeout) {
+    .directive('nga11yFocus', ['$timeout', function ($timeout) {
         function hidden(elem) {
             return !elem.offsetWidth || !elem.offsetHeight;
         }
@@ -131,15 +121,7 @@
  */
 (function () {
     'use strict';
-
-    var module;
-    try {
-        module = angular.module('ngA11y');
-    } catch (err) {
-        module = angular.module('ngA11y', []);
-    }
-
-    /**
+/**
      * Reset (remove-all) aria-desribedby ids added by these directives
      * and optionally add a new ID
      *
@@ -182,11 +164,15 @@
             elem.setAttribute('aria-describedby', describedby);
         }
     }
+    
+   angular.module('ngA11y')
+
+    
 
     /**
      * Directive to make aria-live announcements of validation errors
      */
-    module.directive('nga11yValidation', ['$timeout', 'nga11yAnnounce', function ($timeout, nga11yAnnounce) {
+    .directive('nga11yValidation', ['$timeout', 'nga11yAnnounce', function ($timeout, nga11yAnnounce) {
         return {
             require: 'ngModel',
             link: function (scope, element, attrs, ctrl) {
