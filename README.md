@@ -99,7 +99,17 @@ The nga11y library provides two directives to assist with this, the 'nga11y-moda
 #### nga11y-modal
 
 This is an atttribute that should be placed on an element that contains the contents of the modal.  It is the element that will be given focus when the modal is shown, and focus will only be
-given to natively focusable elements within this container until the modal is dismissed.
+given to natively focusable elements within this container until the modal is dismissed.  
+
+You can configure the selector to detect focusable lements, if needed, like so:
+
+```
+angular.module('app')
+  .config(function ($ngA11yProvider) {
+    $ngA11yProvider.options.modal.focusSelector = 'a, input:not([hidden="true"]):not(.hidden), [tabindex], select, button, textarea, area';
+    });
+
+```
 
 Example:
 
