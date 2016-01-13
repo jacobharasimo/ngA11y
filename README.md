@@ -10,7 +10,7 @@ I tried it out and initally it worked for what I wanted, however as my project g
 ##Install
 
 ```
-bower install ng-a11y
+bower install ngA11y --save
 ```
 
 ## Usage
