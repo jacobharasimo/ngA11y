@@ -1,5 +1,10 @@
 module.exports = function (grunt) {
     // Do grunt-related things in here
+    grunt.loadNpmTasks('grunt-karma');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-clean');
+
     grunt.initConfig({
         pkg: grunt.file.readJSON("package.json"),
         karma: {
@@ -16,36 +21,35 @@ module.exports = function (grunt) {
                 singleRun: true
             }
         },
+        clean: ["dist","nga11y.js"],
         uglify: {
             options: {
-                preserveComments: 'no',
-                banner: ['/*!',
-                    '* Angular Directives For Accessible Applications',
-                    '*',
-                    '* Copyright (C) 2015 Deque Systems Inc., All Rights Reserved',
-                    '*',
-                    '* See the project LICENSE file for usage - https://github.com/dequelabs/ngA11y/blob/master/LICENSE',
-                    '*/\n'].join('\n')
+                preserveComments: 'no'                
             },
             dist: {
-                files: {
-                    'dist/nga11ymodal.min.js': ['src/nga11ymodal.js'],
-                    'dist/nga11yforms.min.js': ['src/nga11yforms.js'],
-                    'dist/nga11yfocus.min.js': ['src/nga11yfocus.js'],
-                    'dist/nga11yannounce.min.js': ['src/nga11yannounce.js'],
-                    'dist/nga11y.min.js': ['src/nga11ymodal.js',
-                        'src/nga11yforms.js',
-                        'src/nga11yfocus.js',
-                        'src/nga11yannounce.js']
+                files: {                    
+                    'dist/nga11y.min.js': ['nga11y.js']
                 }
             }
-        }
+        },
+        concat: {
+            options: {
+              separator: ';',
+            },
+            dist: {
+              src: ['src/*.js'],
+              dest: 'nga11y.js',
+            },
+          }
     });
 
-    grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    
     grunt.registerTask('test', ['karma:unit']);
     grunt.registerTask('travis', ['karma:phantom']);
     grunt.registerTask('default', ['dist', 'test']);
-    grunt.registerTask('dist', 'uglify:dist');
+    grunt.registerTask('dist', [
+        'clean',
+        'concat',
+        'uglify:dist'
+        ]);
 };

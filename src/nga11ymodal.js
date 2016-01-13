@@ -24,12 +24,13 @@
          *
          * @description
          */
-        .directive('nga11yModal', ['$log', function ($log) {
+        .directive('nga11yModal', ['$log','$ngA11y', function ($log,$ngA11y) {
             return {
                 restrict: 'A',
                 scope: {},
                 controller: ['$element', '$scope', '$attrs', function ($element, $scope, $attrs) {
-                    var focusSelector = 'a, input:not([hidden="true"]):not(.hidden), [tabindex], select, button, textarea, area';
+                  $scope.options = $ngA11y.modal;
+                    var focusSelector = $ngA11y.modal.focusSelector;
 
                     /**
                      * Gets first and last focusable elements in a container
